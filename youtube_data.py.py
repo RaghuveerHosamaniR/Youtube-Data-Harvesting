@@ -12,7 +12,7 @@ from googleapiclient.discovery import build
 # YOUTUBE API CONNECTION
 # ----------------------------
 def Api_connect():
-    Api_Id = "AIzaSyCLk97dDenpBXbz7MqL-qvv2zUCp2MByyg"
+    Api_Id = "****************"
     youtube = build("youtube", "v3", developerKey=Api_Id)
     return youtube
 
@@ -177,7 +177,7 @@ def run_query(query):
     mydb = psycopg2.connect(
         host="localhost",
         user="postgres",
-        password="Raghuveer",
+        password="******",
         database="youtube_data",
         port="5432"
     )
@@ -239,7 +239,7 @@ if st.button("Migrate to SQL"):
         mydb = psycopg2.connect(
             host="localhost",
             user="postgres",
-            password="Raghuveer",
+            password="******",
             database="youtube_data",
             port="5432"
         )
@@ -469,4 +469,5 @@ st.subheader("Top 10 Videos with Highest Comments")
 df_top_comments = run_query("SELECT Title, Channel_Name, Comments FROM videos WHERE Comments IS NOT NULL ORDER BY Comments::bigint DESC LIMIT 10;")
 fig_top_comments = px.bar(df_top_comments, x='title', y='comments', color='comments', text='comments',
                           title="Top 10 Videos by Comments", color_discrete_sequence=px.colors.qualitative.Vivid)
+
 st.plotly_chart(fig_top_comments, use_container_width=True)
